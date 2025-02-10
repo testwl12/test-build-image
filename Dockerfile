@@ -14,15 +14,25 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
 
 
 # Download and configure OpenSSL
-ARG OPENSSL_VERSION=1.1.1w # 
-RUN wget https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz && \
-    tar -xzf openssl-${OPENSSL_VERSION}.tar.gz && \
-    cd openssl-${OPENSSL_VERSION} && \
-    ./Configure --prefix=/usr/local --disable-shared --with-zlib-include=/usr/include --with-zlib-lib=/usr/lib -g3 -O0 && \ # Optimize tu use less memory
-    make -j2 && \ # 2 cores limited
-    make install && \
-    cd .. && \
-    rm -rf openssl-${OPENSSL_VERSION}* 
+ARG OPENSSL_VERSION=1.1.1w 
+RUN apt-get update -y && apt-get install -y --no-install-recommends \
+    git \
+    build-essential \
+    clang \
+    curl \
+    wget \
+    zlib1g-dev \
+    && rm -rf /var/lib/apt/lists/* \
+    && ARG OPENSSL_VERSION=1.1.1w \
+    && wget https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz \
+    && tar -xzf openssl-${OPENSSL_VERSION}.tar.gz \
+    && cd openssl-${OPENSSL_VERSION} \
+    && ./Configure --prefix=/usr/local --disable-shared --with-zlib-include=/usr/include --with-zlib-lib=/usr/lib -g3 -O0 \
+    && make -j2 \
+    && make install \
+    && cd .. \
+    && rm -rf openssl-${OPENSSL_VERSION}*
+
 ENV OPENSSL_DIR="/usr/local/ssl"
 ENV OPENSSL_INCLUDE_DIR="/usr/local/include"
 ENV OPENSSL_LIB_DIR="/usr/local/lib"
