@@ -23,7 +23,6 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
     wget \
     zlib1g-dev \
     && rm -rf /var/lib/apt/lists/* \
-    && ARG OPENSSL_VERSION=1.1.1w \
     && wget https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz \
     && tar -xzf openssl-${OPENSSL_VERSION}.tar.gz \
     && cd openssl-${OPENSSL_VERSION} \
