@@ -15,7 +15,7 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
 
 # Download and configure OpenSSL
 ARG OPENSSL_VERSION=1.1.1w 
-RUN apt-get update -y && apt-get install -y --no-install-recommends \
+RUN set -x && apt-get update -y && apt-get install -y --no-install-recommends \
     git \
     build-essential \
     clang \
