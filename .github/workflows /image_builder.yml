@@ -2,9 +2,15 @@ name: Builds the Image
 
 on:
   workflow_dispatch:
-  push: #
+    inputs:
+      custom_tag:
+        description: 'Tag for manual build.'
+        required: false
+  release:
+    types: [published]
+  push: 
     branches:
-      - main
+      - docker-images
 
 
 jobs:
