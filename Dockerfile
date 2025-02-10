@@ -14,7 +14,7 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
 
 
 # Download and configure OpenSSL
-ARG OPENSSL_VERSION=0.10 # 
+ARG OPENSSL_VERSION=1.1.1w # 
 RUN wget https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz && \
     tar -xzf openssl-${OPENSSL_VERSION}.tar.gz && \
     cd openssl-${OPENSSL_VERSION} && \
