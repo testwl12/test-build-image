@@ -26,7 +26,7 @@ RUN set -x && apt-get update -y && apt-get install -y --no-install-recommends \
     && wget https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz \
     && tar -xzf openssl-${OPENSSL_VERSION}.tar.gz \
     && cd openssl-${OPENSSL_VERSION} \
-    && ./Configure --prefix=/usr/local --disable-shared --with-zlib-include=/usr/include --with-zlib-lib=/usr/lib -g3 -O0 \
+    && CFLAGS="-g3 -O0" ./Configure --prefix=/usr/local --disable-shared --with-zlib-include=/usr/include --with-zlib-lib=/usr/lib \
     && make -j2 \
     && make install \
     && cd .. \
