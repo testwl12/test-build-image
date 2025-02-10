@@ -18,7 +18,7 @@ ARG OPENSSL_VERSION=1.1.1w #
 RUN wget https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz && \
     tar -xzf openssl-${OPENSSL_VERSION}.tar.gz && \
     cd openssl-${OPENSSL_VERSION} && \
-    ./Configure --prefix=/usr/local --disable-shared --with-zlib-include=/usr/include --with-zlib-lib=/usr/lib CFLAGS="-O2 -g0" && \ # Optimize tu use less memory
+    ./Configure --prefix=/usr/local --disable-shared --with-zlib-include=/usr/include --with-zlib-lib=/usr/lib -g3 -O0 && \ # Optimize tu use less memory
     make -j2 && \ # 2 cores limited
     make install && \
     cd .. && \
