@@ -1,9 +1,7 @@
 name: Builds the Image
 
 on:
-  commit:
-    branches:
-      - main
+  workflow_dispatch
 
 jobs:
     build-and-push:
